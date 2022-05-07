@@ -1,3 +1,11 @@
+/*
+ * @Author: xu756
+ * @Date: 2022-05-06 22:32:48
+ * @LastEditTime: 2022-05-07 01:17:33
+ * @LastEditors: xu756
+ * @Description: 配置
+ * @FilePath: \goweb\vue.config.js
+ */
 // vue.config.js 配置说明
 //官方vue.config.js 参考文档 https://cli.vuejs.org/zh/config/#css-loaderoptions
 // 这里只列一部分，具体配置参考文档
@@ -41,16 +49,16 @@ module.exports = {
     https: false, // https:{type:Boolean}
     open: false, //配置自动启动浏览器
 
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8000/api', // 要访问的接口域名
-        ws: true, // 是否启用websockets
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': '',
-        },
-      },
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://127.0.0.1:8000/api', // 要访问的接口域名
+    //     ws: true, // 是否启用websockets
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/api': '',
+    //     },
+    //   },
 
-    },
+    // },
   },
 }

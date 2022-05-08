@@ -7,7 +7,7 @@
  * @FilePath: \goweb\src\main.js
  */
 import {
-    createApp
+  createApp
 } from 'vue'
 import App from './App.vue'
 import store from './store'
@@ -18,15 +18,17 @@ import axios from 'axios'
 //配置axios
 axios.defaults.baseURL = '/api'
 axios.interceptors.request.use(function (config) {
-    // 在发送请求之前做些什么
-    // 设置请求头
-    // config.headers.Authorization = localStorage.getItem('token')
-    return config;
-  }, function (error) {
-    // 对请求错误做些什么
-    ElMessage.error('请求错误')
-    return Promise.reject(error);
-  });
+  // 在发送请求之前做些什么
+  // 设置请求头
+  // config.headers.Authorization = localStorage.getItem('token')
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  ElMessage.error('请求错误')
+  return Promise.reject(error);
+});
+import md5 from 'js-md5';
+
 const app = createApp(App)
 app.use(store)
 app.use(router)
@@ -34,3 +36,4 @@ app.use(ElementPlus)
 app.mount('#app')
 //配置全局
 app.config.globalProperties.$http = axios
+app.config.globalProperties.$md5 = md5

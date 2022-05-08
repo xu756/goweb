@@ -1,23 +1,31 @@
 <template>
   <div id="LoginBox">
-    <div id="login">
-      <el-form :model="userinfo" label-width="70px" hide-required-asterisk>
-        <el-form-item label="登录名">
+    <div id="login" v-loading="loading"
+    element-loading-text="登录中...">
+      <el-form
+        :model="userinfo"
+        label-width="70px"
+        hide-required-asterisk
+        ref="userref"
+        :rules="userrules"
+      >
+        <el-form-item label="登录名" prop="username">
           <el-input
             v-model="userinfo.username"
             placeholder="请输入用户名"
             type="text"
           ></el-input>
         </el-form-item>
-        <el-form-item label="密码">
+        <el-form-item label="密码" prop="password">
           <el-input
             v-model="userinfo.password"
             placeholder="请输入密码"
             type="password"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item label-width="0">
           <el-button type="primary" @click="login">登录</el-button>
+          <el-button type="primary" @click="reset">重置表单</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -31,13 +39,55 @@ export default {
         username: "admin",
         password: "123456",
       },
+      userrules: {
+        username: [
+          {
+            required: true,
+            message: "请输入用户名",
+            trigger: "change",
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: "请输入密码",
+            trigger: "change",
+          },
+          {
+            min: 6,
+            max: 12,
+            message: "密码长度必须在6到12位之间",
+          },
+        ],
+      },
+      loading: false,
     };
   },
   methods: {
     login() {
-      this.$http.post("login", this.userinfo).then((res) => {
-       console.log(res.data);
+      this.loading = true;
+      this.$refs.userref.validate((valid) => {
+        if (valid) {
+          this.$http
+            .post("login", {
+              username: this.userinfo.username,
+              password: this.$md5(this.userinfo.password, 64),
+            })
+            .then((res) => {
+              this.loading = false;
+              this.reset();
+              if (res.data.code == 200) {
+                this.$message.success(res.data.message);
+              } else {
+                this.$message.error(res.data.message);
+              }
+            });
+        }
       });
+    },
+    // 重置表单
+    reset() {
+      this.$refs.userref.resetFields();
     },
   },
 };

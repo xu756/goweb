@@ -1,4 +1,4 @@
-<template>
+<template >
   <div id="LoginBox">
     <div id="login" v-loading="loading" element-loading-text="登录中...">
       <el-form
@@ -76,6 +76,8 @@ export default {
               this.reset();
               if (res.data.code == 200) {
                 this.$message.success(res.data.message);
+                this.localStorage.setItem("token", res.data.token);
+                this.$router.push("/");
               } else {
                 this.$message.error(res.data.message);
               }

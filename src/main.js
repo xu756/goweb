@@ -27,8 +27,8 @@ axios.interceptors.request.use(function (config) {
   ElMessage.error('请求错误')
   return Promise.reject(error);
 });
+//加密
 import md5 from 'js-md5';
-
 const app = createApp(App)
 app.use(store)
 app.use(router)

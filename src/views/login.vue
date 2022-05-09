@@ -1,7 +1,6 @@
 <template>
   <div id="LoginBox">
-    <div id="login" v-loading="loading"
-    element-loading-text="登录中...">
+    <div id="login" v-loading="loading" element-loading-text="登录中...">
       <el-form
         :model="userinfo"
         label-width="70px"
@@ -24,8 +23,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label-width="0">
-          <el-button type="primary" @click="login">登录</el-button>
-          <el-button type="primary" @click="reset">重置表单</el-button>
+          <el-button type="primary" @click="login" id="b_t">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -38,7 +36,7 @@ export default {
       userinfo: {
         username: "admin",
         password: "123456",
-      },
+      }, // 登录信息
       userrules: {
         username: [
           {
@@ -59,8 +57,8 @@ export default {
             message: "密码长度必须在6到12位之间",
           },
         ],
-      },
-      loading: false,
+      }, // 表单验证规则
+      loading: false, // 加载中
     };
   },
   methods: {
@@ -99,8 +97,8 @@ export default {
   height: 100%;
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
   #login {
-    width: 400px;
-    height: 330px;
+    width: 260px;
+    height: 200px;
     padding: 30px;
     position: absolute;
     background-color: #ffffff;
@@ -108,6 +106,9 @@ export default {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    #b_t {
+      width: 100%;
+    }
   }
 }
 </style>>

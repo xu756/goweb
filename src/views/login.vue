@@ -13,13 +13,19 @@
             v-model="userinfo.username"
             placeholder="请输入用户名"
             type="text"
-          ></el-input>
+          >
+            <template #prefix>
+              <i class="iconfont icon-yonghuguanli_huaban"></i>
+            </template>
+          </el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
           <el-input
             v-model="userinfo.password"
             placeholder="请输入密码"
             type="password"
+            ><template #prefix>
+              <i class="iconfont icon-mima"></i> </template
           ></el-input>
         </el-form-item>
         <el-form-item label-width="0">

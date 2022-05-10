@@ -14,6 +14,7 @@ import store from './store'
 import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import './assets/icon/iconfont.css'
 import axios from 'axios'
 //配置axios
 axios.defaults.baseURL = '/api'
@@ -31,8 +32,8 @@ axios.interceptors.request.use(function (config) {
 import md5 from 'js-md5';
 const app = createApp(App)
 app.use(store)
-app.use(router)
 app.use(ElementPlus)
+app.use(router)
 app.mount('#app')
 //配置全局
 app.config.globalProperties.$http = axios

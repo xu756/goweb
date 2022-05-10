@@ -14,7 +14,29 @@ import {
 const routes = [{
     path: '/',
     name: 'index',
-    component: () => import('@/views/index.vue')
+    redirect: '/home',
+    component: () => import('@/views/index.vue'),
+    children: [{
+      path: '/home',
+      name: 'home',
+      component: () => import('@/components/index.vue'),
+
+    }, {
+      path: '/gzh',
+      name: 'gzh_menu',
+      component: () => import('@/components/gzh/menu.vue'),
+      redirect: '/gzh/menu',
+      children: [{
+        path: '/gzh/menu',
+        name: 'gzh_menu',
+        component: () => import('@/components/gzh/menu.vue'),
+      },{
+        path: '/gzh/notice',
+        name: 'gzh_notice',
+        component: () => import('@/components/gzh/notice.vue'),
+        
+      }]
+    }]
   },
   {
     path: '/login',

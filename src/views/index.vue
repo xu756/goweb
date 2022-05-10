@@ -48,6 +48,9 @@ export default {
 .iconfont {
   padding-right: 10px;
 }
+.el-menu {
+  --el-menu-bg-color: none;
+}
 // 最外面的容器
 .el-container {
   width: 100%;

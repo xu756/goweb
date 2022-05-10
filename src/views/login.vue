@@ -76,7 +76,7 @@ export default {
               this.reset();
               if (res.data.code == 200) {
                 this.$message.success(res.data.message);
-                this.localStorage.setItem("token", res.data.token);
+                localStorage.setItem("token", res.data.token);
                 this.$router.push("/");
               } else {
                 this.$message.error(res.data.message);

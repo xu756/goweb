@@ -23,6 +23,10 @@
               <span>消息回复</span>
             </el-menu-item>
           </el-sub-menu>
+          <el-menu-item index="/user/info">
+            <i class="iconfont icon-yonghuguanli_huaban"></i>
+            <span>个人信息</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-main> <router-view /></el-main>
@@ -66,11 +70,12 @@ export default {
   .el-container {
     width: 100%;
     height: 100%;
-    // 头部
-    .el-header {
-      width: 100%;
-      height: 60px;
-    }
+  }
+  .el-main {
+    width: 100%;
+    height: 100%;
+    background-color: #8ec5fc;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   }
 }
 </style>

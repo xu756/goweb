@@ -17,25 +17,30 @@ const routes = [{
     redirect: '/home',
     component: () => import('@/views/index.vue'),
     children: [{
+      // 首页
       path: '/home',
       name: 'home',
-      component: () => import('@/components/index.vue'),
+      component: () => import('@/components/home.vue'),
 
     }, {
+      //公众号
       path: '/gzh',
+      name: 'gzh',
+      redirect: '/gzh/menu',
+    }, {
+      //公众号菜单
+      path: '/gzh/menu',
       name: 'gzh_menu',
       component: () => import('@/components/gzh/menu.vue'),
-      redirect: '/gzh/menu',
-      children: [{
-        path: '/gzh/menu',
-        name: 'gzh_menu',
-        component: () => import('@/components/gzh/menu.vue'),
-      },{
-        path: '/gzh/notice',
-        name: 'gzh_notice',
-        component: () => import('@/components/gzh/notice.vue'),
-        
-      }]
+    }, {
+      //公众号消息
+      path: '/gzh/notice',
+      name: 'gzh_notice',
+      component: () => import('@/components/gzh/notice.vue'),
+    }, {
+      path: '/user/info',
+      name: 'user_info',
+      component: () => import('@/components/user/info.vue'),
     }]
   },
   {

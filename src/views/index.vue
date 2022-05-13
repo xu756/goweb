@@ -29,7 +29,7 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main> <router-view /></el-main>
+      <el-main v-loading="loading"> <router-view /></el-main>
     </el-container>
   </el-container>
 </template>
@@ -37,13 +37,33 @@
 
 <script>
 export default {
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  created() {
+    this.isuer();
+  },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    isuer() {
+      this.$http
+        .post("userinfo/user=" + localStorage.getItem("token"))
+        .then((res) => {
+          if (res.data.code == 300) {
+            this.$message.error("请重新登录");
+            setTimeout(() => {
+              this.$router.push("/login");
+            }, 1000);
+            this.$router.push("/login");
+          }
+          this.loading = false;
+        });
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
+  },
+  beforeUpdate() {
+    this.loading = true;
+    this.isuer();
   },
 };
 </script>

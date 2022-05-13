@@ -48,10 +48,10 @@ export default {
   methods: {
     isuer() {
       this.$http
-        .post("userinfo/user=" + localStorage.getItem("token"))
+        .get("userinfo/user=" + localStorage.getItem("token"))
         .then((res) => {
           if (res.data.code == 300) {
-            this.$message.error("请重新登录");
+            this.$message.error(res.data.message);
             setTimeout(() => {
               this.$router.push("/login");
             }, 1000);

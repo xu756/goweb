@@ -1,4 +1,4 @@
-<template >
+<template>
   <div id="LoginBox">
     <div id="login" v-loading="loading" element-loading-text="登录中...">
       <el-form
@@ -24,8 +24,7 @@
             v-model="userinfo.password"
             placeholder="请输入密码"
             type="password"
-            ><template #prefix>
-              <i class="iconfont icon-mima"></i> </template
+            ><template #prefix> <i class="iconfont icon-mima"></i> </template
           ></el-input>
         </el-form-item>
         <el-form-item label-width="0">
@@ -119,5 +118,5 @@ export default {
     }
   }
 }
-</style>>
-
+</style>
+>

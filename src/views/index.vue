@@ -29,7 +29,7 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main v-loading="loading"> <router-view /></el-main>
+      <el-main v-loading="loading"><router-view /></el-main>
     </el-container>
   </el-container>
 </template>

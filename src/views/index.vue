@@ -4,8 +4,8 @@
 
     <el-container>
       <el-aside width="200px">
-        <el-menu default-active="/" unique-opened router>
-          <el-menu-item index="/">
+        <el-menu :default-active="defaultactive" unique-opened router>
+          <el-menu-item index="/home">
             <i class="iconfont icon-home1"></i>
             <span>首页</span>
           </el-menu-item>
@@ -39,11 +39,13 @@
 export default {
   data() {
     return {
+      defaultactive: "/home",
       loading: true,
     };
   },
-  created() {
-    this.isuer();
+  mounted() {
+     this.isuer();
+     this.defaultactive=this.$route.path;
   },
   methods: {
     isuer() {

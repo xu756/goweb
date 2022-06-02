@@ -29,7 +29,7 @@ export default {
   methods: {
     getUserInfo() {
       this.$http
-        .post("userinfo/user=" + localStorage.getItem("token"))
+        .get("user/userinfo/user=" + localStorage.getItem("token"))
         .then((res) => {
           console.log(res.data);
           this.userinfo = res.data.userinfo;

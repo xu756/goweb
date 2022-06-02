@@ -72,7 +72,7 @@ export default {
       this.$refs.userref.validate((valid) => {
         if (valid) {
           this.$http
-            .post("login", {
+            .post("user/login", {
               username: this.userinfo.username,
               password: this.$md5(this.userinfo.password, 64),
             })
@@ -80,11 +80,11 @@ export default {
               this.loading = false;
               this.reset();
               if (res.data.code == 200) {
-                this.$message.success(res.data.message);
+                this.$message.success(res.data.msg);
                 localStorage.setItem("token", res.data.token);
                 this.$router.push("/");
               } else {
-                this.$message.error(res.data.message);
+                this.$message.error(res.data.msg);
               }
             });
         }

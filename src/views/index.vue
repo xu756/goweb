@@ -44,16 +44,17 @@ export default {
     };
   },
   mounted() {
-     this.isuer();
-     this.defaultactive=this.$route.path;
+    this.isuer();
+    this.defaultactive = this.$route.path;
   },
   methods: {
     isuer() {
       this.$http
-        .get("userinfo/user=" + localStorage.getItem("token"))
+        .get("user/userinfo/user=" + localStorage.getItem("token"))
         .then((res) => {
           if (res.data.code == 300) {
-            this.$message.error(res.data.message);
+            this.$message.error(res.data.msg);
+            localStorage.removeItem("token");
             setTimeout(() => {
               this.$router.push("/login");
             }, 1000);

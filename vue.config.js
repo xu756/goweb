@@ -51,11 +51,11 @@ module.exports = {
 
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:4000', // 要访问的接口域名
+        target: 'http://127.0.0.1:7000', // 要访问的接口域名
         ws: true, // 是否启用websockets
         changeOrigin: true,
         pathRewrite: {
-          '^/api': 'http://localhost:4000/api',
+          '^/api': 'http://localhost:7000/api',
         },
       },
 

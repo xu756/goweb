@@ -52,13 +52,12 @@ export default {
       this.$http
         .get("user/userinfo/user=" + localStorage.getItem("token"))
         .then((res) => {
-          if (res.data.code == 300) {
+          if (res.data.code == 400) {
             this.$message.error(res.data.msg);
             localStorage.removeItem("token");
             setTimeout(() => {
               this.$router.push("/login");
             }, 1000);
-            this.$router.push("/login");
           }
           this.loading = false;
         });

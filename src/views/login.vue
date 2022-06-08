@@ -1,5 +1,6 @@
 <template>
   <div id="LoginBox">
+    <div class="nowtime">{{ nowTime }}</div>
     <div id="login" v-loading="loading" element-loading-text="登录中...">
       <el-form
         :model="userinfo"
@@ -35,6 +36,7 @@
   </div>
 </template>
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -64,7 +66,11 @@ export default {
         ],
       }, // 表单验证规则
       loading: false, // 加载中
+      nowTime: moment().format("LTS"), // 当前时间
     };
+  },
+  created() {
+    this.getTime();
   },
   methods: {
     login() {
@@ -74,7 +80,7 @@ export default {
           this.$http
             .post("user/login", {
               username: this.userinfo.username,
-              password: this.$md5(this.userinfo.password, 64),
+              password: this.$md5(this.userinfo.password, 32),
             })
             .then((res) => {
               this.loading = false;
@@ -94,11 +100,29 @@ export default {
     reset() {
       this.$refs.userref.resetFields();
     },
+    // 获取时间
+    getTime() {
+      setInterval(() => {
+        this.nowTime = moment().format("LTS");
+      }, 1000);
+    },
   },
 };
 </script>
 
 <style lang="scss">
+.nowtime {
+  font-size: 24em;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  //无法选中
+  user-select: none;
+}
 #LoginBox {
   width: 100%;
   height: 100%;
@@ -113,6 +137,7 @@ export default {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    opacity: 0.95;
     #b_t {
       width: 100%;
     }

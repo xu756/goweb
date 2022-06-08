@@ -30,10 +30,14 @@ axios.interceptors.request.use(function (config) {
 });
 //加密
 import md5 from 'js-md5';
+// 时间格式化
+import moment from "moment";
 const app = createApp(App)
 app.use(store)
 app.use(ElementPlus)
 app.use(router)
+app.config.globalProperties.$moment = moment
+moment.locale('zh-cn')
 app.mount('#app')
 //配置全局
 app.config.globalProperties.$http = axios

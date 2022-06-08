@@ -3,13 +3,14 @@
     <el-form :model="userinfo" label-width="100px">
       <el-form-item label="用户名" prop="username">
         <el-input
-          v-model="userinfo.Name"
+          v-model="userinfo.username"
           placeholder="请输入你的用户名"
+          disabled
         ></el-input>
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-input
-          v-model="userinfo.Email"
+          v-model="userinfo.emial"
           placeholder="请输入你的邮箱"
         ></el-input>
       </el-form-item>
@@ -23,7 +24,7 @@ export default {
       userinfo: {},
     };
   },
-  created() {
+  mounted() {
     this.getUserInfo();
   },
   methods: {
